@@ -8,18 +8,29 @@ import { ProduitRepositoryService } from 'src/app/Services/produit-repository.se
   styleUrls: ['./produits.component.css']
 })
 export class ProduitsComponent implements OnInit {
- 
 
-  constructor(private _produitsRepo: ProduitRepositoryService) { 
-    this.produits=this._produitsRepo.getProduits();
+  selectedProduit: Produit;   
+  isEditing = false;
+
+  constructor(private _produitsRepo: ProduitRepositoryService) {
+    this.produits = this._produitsRepo.getProduits();
   }
 
-  
+
 
   ngOnInit() {
+    this.produits = this._produitsRepo.getProduits();
+    this.selectProduit (this.produits[0]);  
   }
 
-  private produits = [
+   selectProduit(p: Produit) {
+    //changement du joueur sélectionné
+    if(this.isEditing) return;
+    this.selectedProduit = p;
+  } 
+
+
+  produits: Produit[]= [
     new Produit({
       id: 1,
       nom: "Produit_1",
@@ -36,5 +47,12 @@ export class ProduitsComponent implements OnInit {
       couleur: "blanc",
     })
   ];
+
+  isSelected(p: Produit){
+    return p===this.selectedProduit;
+  }
+  editionChanges(data){
+    this.isEditing=data;
+  }
 
 }

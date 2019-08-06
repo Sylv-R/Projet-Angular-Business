@@ -1,1 +1,21 @@
-<p>produit-detail works!</p>
+<h2>Nom : {{produit.nom}}</h2>
+<div><span>id : </span>{{produit.id}}</div>
+<div><span>Texture : </span>{{produit.texture}}</div>
+<div><span>Grammage : </span>{{produit.grammage}}</div>
+<div><span>Couleur : </span>{{produit.couleur}}</div>
+
+<h2>Mon formulaire</h2>
+<p><span>En édition : </span>{{ isEditing }}</p>
+<form [formGroup]="produitForm" (ngSubmit)="onSubmit()">
+
+    <div> <span>Nom: </span><input formControlName="nom" placeholder="nom"></div>
+    <div> <span>Id: </span><input formControlName='id' placeholder='id'></div>
+    <div> <span>Texture: </span><input formControlName='texture' placeholder='texture'></div>
+    <div> <span>Grammage: </span><input formControlName='grammage' placeholder='grammage'></div>
+    <div> <span>Couleur: </span><input formControlName='couleur' placeholder='couleur'></div>
+  <button type="submit" [disabled]="!produitForm.valid">Submit</button>
+  <button type="button" (click)="onCancel()">Cancel</button>
+</form>
+
+<h2>Affichage en json</h2>
+<div>{{produitForm.value | json}}</div>

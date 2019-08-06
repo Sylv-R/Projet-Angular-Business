@@ -11,9 +11,9 @@ export class ProduitRepositoryService {
   private produits = [
     new Produit({
       id: 1,
-      nom: "Produit_1",
+      nom: "Produit_1111",
       texture: "Texture_1",
-      grammage: 60,
+      grammage: 60+" g/m²",
       couleur: "bleu",
     }),
 
@@ -21,7 +21,7 @@ export class ProduitRepositoryService {
       id: 2,
       nom: "Produit_2",
       texture: "Texture_2",
-      grammage: 100,
+      grammage: 100+" g/m²",
       couleur: "blanc",
     })
   ];

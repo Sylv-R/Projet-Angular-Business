@@ -2,6 +2,10 @@
 
 <div>
   <ul>
-    <li *ngFor="let p of produits">{{p.nom}}</li>
+    <li *ngFor="let p of produits" (click)="selectProduit(p)" [class.selected]="isSelected(p)">{{p.nom}}</li>
   </ul>
 </div>
+
+<div>On est en édition : {{ isEditing }}</div>
+
+<app-produit-detail [produit]="selectedProduit" (onEditionChanges)="editionChanges($event)"></app-produit-detail>
