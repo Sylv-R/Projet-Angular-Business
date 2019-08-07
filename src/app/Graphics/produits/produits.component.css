@@ -1,5 +1,23 @@
-.selected{
-    /* background-color: dimgray; */
-    font-weight: bold;
-    font-size: 150%;
+.selected {
+  font-weight: bold;
+  font-size: 150%;
+}
+
+#list {
+  border-style: groove;
+  background-color: orange;
+}
+
+h2 {
+  text-align: center;
+}
+
+div {
+  margin-left: 25%;
+  margin-right: 25%;
+  text-align: center;
+}
+
+li{
+    display: block; 
 }

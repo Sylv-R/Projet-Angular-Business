@@ -1,21 +1,29 @@
-<h2>Nom : {{produit.nom}}</h2>
-<div><span>id : </span>{{produit.id}}</div>
-<div><span>Texture : </span>{{produit.texture}}</div>
-<div><span>Grammage : </span>{{produit.grammage}}</div>
-<div><span>Couleur : </span>{{produit.couleur}}</div>
+<h2>Détails du produit sélectionné</h2>
+<div id='details'>
+  <div><span class='span1'>id : </span>{{produit.id}}</div>
+  <div><span class='span1'>Texture : </span>{{produit.texture}}</div>
+  <div><span class='span1'>Grammage : </span>{{produit.grammage}}</div>
+  <div><span class='span1'>Couleur : </span>{{produit.couleur}}</div>
+</div>
+<br />
 
-<h2>Mon formulaire</h2>
-<p><span>En édition : </span>{{ isEditing }}</p>
-<form [formGroup]="produitForm" (ngSubmit)="onSubmit()">
+<h2>Création/Modification d'un produit</h2>
+<div id='createUpdate'>
+  <form [formGroup]="produitForm" (ngSubmit)="onSubmit()">
 
-    <div> <span>Nom: </span><input formControlName="nom" placeholder="nom"></div>
-    <div> <span>Id: </span><input formControlName='id' placeholder='id'></div>
-    <div> <span>Texture: </span><input formControlName='texture' placeholder='texture'></div>
-    <div> <span>Grammage: </span><input formControlName='grammage' placeholder='grammage'></div>
-    <div> <span>Couleur: </span><input formControlName='couleur' placeholder='couleur'></div>
-  <button type="submit" [disabled]="!produitForm.valid">Submit</button>
-  <button type="button" (click)="onCancel()">Cancel</button>
-</form>
-
-<h2>Affichage en json</h2>
-<div>{{produitForm.value | json}}</div>
+    <div> <span class='span1'>Nom: </span><input formControlName='nom' placeholder='nom'></div>
+    <div> <span class='span1'>Id: </span><input formControlName='id' placeholder='id'></div>
+    <div> <span class='span1'>Texture: </span><input formControlName='texture' placeholder='texture'></div>
+    <div> <span class='span1'>Grammage: </span><input formControlName='grammage' placeholder='grammage'></div>
+    <div> <span class='span1'>Couleur: </span><input formControlName='couleur' placeholder='couleur'></div>
+    <br />
+    <div class='buttons'>
+      <button class="buttonSpace" idtype="submit" [disabled]="!produitForm.valid">Valider le changement</button>
+      <button class="buttonSpace" type="button" (click)="onCancel()">Annuler l'édition en cours</button>
+    </div>
+    <div class='buttons'>
+      <button id='btnAddProduit' class="buttonSpace" type="button" (click)="addProduit()">Ajouter un nouveau
+        produit</button>
+    </div>
+  </form>
+</div>

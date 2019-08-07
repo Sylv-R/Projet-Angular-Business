@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Produit } from 'src/app/Model/produit';
+import { ProduitRepositoryService } from 'src/app/Services/produit-repository.service';
 
 @Component({
   selector: 'app-produit-detail',
@@ -11,23 +12,27 @@ export class ProduitDetailComponent implements OnInit {
 
   public isEditing = false;
   public isAffectingValues = false;
+  public isAdding = false;
+  public addNewId;
   private _produit: Produit;
+  produits: Produit[];
 
-  constructor() { }
+  constructor(private _produitsRepo: ProduitRepositoryService) {
+    this.produits = this._produitsRepo.getProduits();
+  }
 
   ngOnInit() {
-     this.produitForm.valueChanges.subscribe((d) => {
+    this.produitForm.valueChanges.subscribe((d) => {
       if (!this.isAffectingValues) {
         this.isEditing = true;
         this.onEditionChanges.emit(this.isEditing);
       }
-
-    }); 
+    });
   }
 
   @Input() set produit(value: Produit) {
     this._produit = value;
-    this.selectPlayer(this._produit);
+    this.selectProduit(this._produit);
   }
 
   get produit() {
@@ -42,33 +47,39 @@ export class ProduitDetailComponent implements OnInit {
     couleur: new FormControl('')
   });
 
-
   @Output() onEditionChanges = new EventEmitter<boolean>();
 
-    
-
-   selectPlayer(p: Produit) {
-    //passage des valeurs du joueur sélectionné au formulaire
+  selectProduit(p: Produit) {
     this.isAffectingValues = true;
     this.produitForm.setValue(p);
     this.isAffectingValues = false;
-
   }
 
   onSubmit() {
-    //Mise à jour des données du joueur sélectionné
-    console.log("Hééé2");
     this.produit.setValue(this.produitForm.value);
     this.isEditing = false;
     this.onEditionChanges.emit(this.isEditing);
-    
+
   }
 
   onCancel() {
-    console.log("Hééé");
-    this.produitForm.setValue(this.produit);    
+    this.produitForm.setValue(this.produit);
     this.isEditing = false;
     this.onEditionChanges.emit(this.isEditing);
   }
 
+  addProduit() {
+    var arrayIds: number[] = [];
+    for (var i = 0; i < this.produits.length; i++) {
+      var ids = this.produits[i].id;
+      arrayIds.push(ids);
+    }
+    var maxId = Math.max.apply(Math, arrayIds);
+
+    this.produitForm.patchValue({ id: maxId + 1 });
+    this.produits.push(new Produit(this.produitForm.value));
+    this.produitForm.setValue(this.produit);
+    this.isEditing = false;
+    this.onEditionChanges.emit(this.isEditing);
+  }
 }

@@ -3,7 +3,7 @@ export class Produit {
     public id: number;
     public nom: string;
     public texture: string;
-    public grammage: number;
+    public grammage: string;
     public couleur: string;
 
     constructor(data?) {
