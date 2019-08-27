@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Produit } from '../Model/produit';
+import { FormGroup, FormControl } from '@angular/forms';
+import { element } from 'protractor';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProduitRepositoryService {
+
+  selectedProduit: Produit;
 
   constructor() { }
 
@@ -36,4 +40,19 @@ export class ProduitRepositoryService {
     return this.produits;
   }
 
+  public getProduitById(id: number) {
+    return this.getProduits().find(produit => produit.id === id);
+  }
+
+  public getNextId() {
+    return Math.max.apply(Math, [0, ...this.produits.map(p => p.id)]) + 1;
+  }
+
+  public newProduit(p: Produit) {
+    var newProduit = new Produit();
+    newProduit.setValue(p);
+    newProduit.setId(this.getNextId());
+    this.produits.push(newProduit);
+    return newProduit;
+  }
 }

@@ -1,1 +1,13 @@
-<app-produits></app-produits>
+<section id='section'>
+  <div style="text-align:center" id='router'>
+    <br />
+    <div id='bordureMenu'>
+      <a routerLink="/produits" routerLinkActive="router-link-active" id='title1'>Tous les produits</a>
+      <span class="tildeBlack">~</span>
+      <span class="tildeWhite">~</span>
+      <span class="tildeBlack">~</span>
+      <a routerLink="/listProduits" routerLinkActive="router-link-active" id='title2'>Liste des produits</a><br>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
+</section>

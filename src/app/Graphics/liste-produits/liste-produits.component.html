@@ -1,0 +1,12 @@
+<div id='list'>
+  <li *ngFor="let p of produits">
+    <a routerLink="/produit/{{p.id}}">--- {{p.nom}} ---</a></li>
+</div>
+<div class='buttons'>
+  <button id='btnAddProduitList' class="buttonSpace" *ngIf="!ishidingBtnAddProduitInList" type="button"
+    (click)="addProduit()">Ajouter un nouveau
+    produit</button>
+</div>
+<br />
+<app-produit-detail [createNewProduit]="isCreateNewProduit" (onDisplayEmptyForm)="displayEmptyForm($event)"
+  (hideBtnAddProduitInList)="AddChanges($event)"></app-produit-detail>

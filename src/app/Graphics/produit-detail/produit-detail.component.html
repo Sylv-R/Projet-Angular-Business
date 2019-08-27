@@ -1,5 +1,7 @@
-<h2>Détails du produit sélectionné</h2>
-<div id='details'>
+<!-- <h2>{{produit.nom}}</h2> -->
+<h2 *ngIf="onlyAddButtonUrl0 && showDetailProduit && !onlyAddButton">{{produit.nom}}</h2>
+
+<div id='details' *ngIf="produitAndDetail && showDetailProduit">
   <div><span class='span1'>id : </span>{{produit.id}}</div>
   <div><span class='span1'>Texture : </span>{{produit.texture}}</div>
   <div><span class='span1'>Grammage : </span>{{produit.grammage}}</div>
@@ -7,8 +9,7 @@
 </div>
 <br />
 
-<h2>Création/Modification d'un produit</h2>
-<div id='createUpdate'>
+<div id='createUpdate' *ngIf="produitAndDetail && isCreateNewProduit">
   <form [formGroup]="produitForm" (ngSubmit)="onSubmit()">
 
     <div> <span class='span1'>Nom: </span><input formControlName='nom' placeholder='nom'></div>
@@ -18,12 +19,20 @@
     <div> <span class='span1'>Couleur: </span><input formControlName='couleur' placeholder='couleur'></div>
     <br />
     <div class='buttons'>
-      <button class="buttonSpace" idtype="submit" [disabled]="!produitForm.valid">Valider le changement</button>
-      <button class="buttonSpace" type="button" (click)="onCancel()">Annuler l'édition en cours</button>
-    </div>
-    <div class='buttons'>
-      <button id='btnAddProduit' class="buttonSpace" type="button" (click)="addProduit()">Ajouter un nouveau
+      <button id="btnCancel" class="buttonSpace" type="button" [routerLink]="onlyAddButton ? ['/listProduits'] : []"
+        (click)="onCancel()">Annuler l'édition en cours</button>
+      <button
+        *ngIf="(showDetailProduit && isCreateNewProduit && produitAndDetail && !addNewProduit) || (onlyAddButtonUrl0 && showDetailProduit && !onlyAddButton && !addNewProduit)"
+        class="buttonSpace" idtype="submit" [disabled]="!produitForm.valid">Valider le changement</button>
+      <button *ngIf='!onlyAddButtonUrl0 || onlyAddButton' [routerLink]="onlyAddButton ? ['/listProduits'] : []"
+        id='btnAddProduit' class="buttonSpace" type="button" (click)="addProduit()">Ajouter un nouveau
         produit</button>
     </div>
   </form>
+</div>
+<div>
+  <button style='float: right' *ngIf="isCreateNewProduit && produitAndDetail && onlyAddButtonUrl0 && !onlyAddButton"
+    routerLink="/produit/0" id='btnAddProduit2' class="buttonSpace" type="button" (click)="addProduitUrl0()">Ajouter un
+    nouveau produit
+    ==></button>
 </div>

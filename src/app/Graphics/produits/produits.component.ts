@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Produit } from 'src/app/Model/produit';
 import { ProduitRepositoryService } from 'src/app/Services/produit-repository.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-produits',
@@ -13,7 +14,7 @@ export class ProduitsComponent implements OnInit {
   isEditing = false;
   produits: Produit[];
 
-  constructor(private _produitsRepo: ProduitRepositoryService) {
+  constructor(private _produitsRepo: ProduitRepositoryService, private _actRoute: ActivatedRoute) {
     this.produits = this._produitsRepo.getProduits();
   }
 
@@ -35,4 +36,7 @@ export class ProduitsComponent implements OnInit {
     this.isEditing = data;
   }
 
+  updateSelected(data) {
+    this.selectedProduit = data;
+  }
 }

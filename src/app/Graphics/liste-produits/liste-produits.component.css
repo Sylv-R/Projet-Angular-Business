@@ -1,49 +1,35 @@
-h2 {
-  text-align: center;
-}
-
-#details {
+#list {
   border-style: groove;
-  margin-left: 30%;
-  margin-right: 30%;
-  margin-top: 2%;
-  padding: 1%;
   background-color: hsla(120, 60%, 70%, 0.5);
-  margin-top: 3%;
+  margin-top: 8%;
   text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
   border-radius: 20px;
 }
 
-#createUpdate {
-  border-style: groove;
-  margin-left: 30%;
-  margin-right: 30%;
-  padding: 1%;
-  background-color: hsla(120, 60%, 70%, 0.5);
-  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
-  border-radius: 20px;
-}
-
-h2 {
-  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
-}
-
-.buttonSpace {
-  margin-right: 1%;
-  margin-left: 1%
-}
-
-.span1 {
-  display: inline-block;
-  width: 35%;
-  font-weight: bold;
-}
-
-.buttons {
+div {
+  margin-left: 25%;
+  margin-right: 25%;
   text-align: center;
 }
 
-.buttonSpace {
+li {
+  display: block;
+}
+
+li:hover {
+  font-size: 200%;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.selected {
+  font-size: 200%;
+}
+
+#btnAddProduitList {
   text-align: center;
   background: rgb(30, 87, 34);
   background-image: -webkit-linear-gradient(top, rgb(17, 202, 57), rgb(30, 87, 34));
@@ -65,7 +51,7 @@ h2 {
   margin-top: 3%;
 }
 
-.buttonSpace:hover {
+#btnAddProduitList:hover {
   background: rgb(17, 202, 57);
   background-image: -webkit-linear-gradient(top, rgb(30, 87, 34), rgb(17, 202, 57));
   background-image: -moz-linear-gradient(top, rgb(30, 87, 34), rgb(17, 202, 57));

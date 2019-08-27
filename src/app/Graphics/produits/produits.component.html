@@ -1,7 +1,6 @@
-<h2>Liste des produits</h2>
-
 <div id='list'>
-  <li *ngFor="let p of produits" (click)="selectProduit(p)" [class.selected]="isSelected(p)">{{p.nom}}</li>
+  <li *ngFor="let p of produits" (click)="selectProduit(p)" [class.selected]="isSelected(p)">--- {{p.nom}} ---</li>
 </div>
 <br />
-<app-produit-detail [produit]="selectedProduit" (onEditionChanges)="editionChanges($event)"></app-produit-detail>
+<app-produit-detail [produit]="selectedProduit" (onEditionChanges)="editionChanges($event)"
+  (updateSelected)="updateSelected($event)"></app-produit-detail>
